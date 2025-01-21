@@ -13,16 +13,16 @@ This project develops a Python tool to calculate margin requirements and assess 
 # Libraries:
 
 The following libraries will be used in this project:
-# pandas
+1. pandas:
   - For data manipulation and analysis.
   - To handle CSV files, compute rolling statistics, and filter data.
-# numpy:
+2. numpy:
   - For mathematical operations.
   - To calculate volatility, profit/loss, and other numerical computations.
-# matplotlib:
+3. matplotlib:
   - For data visualization.
   - To plot historical price trends, margin requirements, and risk metrics.
-# yfinance:
+4. yfinance:
   - For fetching historical financial data.
   - To download natural gas futures price data directly from Yahoo Finance.
 
