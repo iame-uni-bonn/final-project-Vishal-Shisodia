@@ -49,8 +49,7 @@ def plot_results(input_file="risk_data.csv"):
 
     # Save as high-quality PNG
     plt.savefig("value_at_risk_analysis.png", dpi=300, bbox_inches='tight') 
-    # Save as PDF
-    plt.savefig("value_at_risk_analysis.pdf", bbox_inches='tight') 
+   
     # Display the plot
     plt.show()  
 

@@ -12,7 +12,7 @@ def fetch_and_save_data(symbol="NG=F", start_date="2021-01-01", end_date="2024-0
     4) filename (str): Name of the CSV file to save the data.
 
     Returns:
-    None as  the function does not return any value explicitly. Instead, it performs actions such as fetching data and saving it to a CSV file.
+    None as the function does not return any value explicitly. Instead, it performs actions such as fetching data and saving it to a CSV file.
     """
     data = yf.download(symbol, start=start_date, end=end_date)
     data.to_csv(filename)
