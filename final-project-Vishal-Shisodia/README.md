@@ -5,7 +5,7 @@ This project aims to develop a Python tool to calculate margin requirements and 
 
 # Motivation  
 
-Margining plays a crucial role in financial markets by ensuring that traders maintain adequate collateral to cover potential losses. Given my experience as a working student at **X**, an energy company in the **Exchange, Clearing, and Marketing Operations** department, I have developed a deeper understanding of margin requirements and risk assessment. This exposure has inspired me to work on a computational tool that simplifies margin calculations and provides insights into risk exposure.  
+Margining plays a crucial role in financial markets by ensuring that traders maintain adequate collateral to cover potential losses. Given my experience as a working student at **XXX**, an energy company in the **Exchange, Clearing, and Marketing Operations** department, I have developed a deeper understanding of margin requirements and risk assessment. This exposure has inspired me to work on a computational tool that simplifies margin calculations and provides insights into risk exposure.  
 
 The project aims to bridge the gap between theoretical finance concepts and practical implementation through **Python-based automation**.  
 
