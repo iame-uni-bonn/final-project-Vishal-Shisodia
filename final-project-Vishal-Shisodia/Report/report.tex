@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{article} 
 \usepackage{graphicx}
 \usepackage{amsmath, amssymb}
 \usepackage{hyperref}
@@ -8,6 +8,11 @@
 \usepackage{subcaption}
 \usepackage{booktabs}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+\usepackage{float}  % Add this to the preamble
+\usepackage{placeins} % Add this to handle float barriers
+
 \title{\textbf{Margin Calculation and Risk Analysis for Financial Derivatives}}
 \author{Vishal Shisodia}
 \date{March 6, 2025}
@@ -16,47 +21,89 @@
 
 \maketitle
 
-This project aims to develop a Python-based tool that facilitates margin requirement calculations and assesses risk exposure for financial derivatives traded on an exchange. The tool automates initial margin computation, dynamically tracks variation margin, and provides essential risk metrics such as Value at Risk (VaR). By streamlining the margining process, this project not only enhances understanding but also offers insights into financial risk management. Furthermore, it aspires to serve as a foundational step towards a more sophisticated risk analysis tool, recognizing that there remains significant scope for refinement and expansion.
+
+Financial markets require robust margining systems to ensure that participants maintain sufficient collateral to cover potential losses. This project tries to develop a Python-based tool to compute margin requirements and assess financial risk exposure in derivative markets. By leveraging historical price data, statistical risk metrics, and machine learning techniques, the tool provides insights into initial margin calculation, variation margin tracking, and Value at Risk (VaR). The study explores the impact of volatility and market conditions on margin requirements and assesses the effectiveness of predictive models in risk management. The results indicate that Parametric VaR is the most significant factor influencing margin requirements, and the Random Forest model achieves high predictive accuracy. This project serves as a bridge between theoretical financial risk models and real-world implementation, facilitating better risk management practices.
 
 
 \section{Introduction}
-Margining plays a crucial role in financial markets by ensuring that traders maintain adequate collateral to cover potential losses. Given my experience as a working student at X(an energy company) in the Exchange, Clearing, and Marketing Operations department, I have developed a deeper understanding of margin requirements and risk assessment. This exposure has inspired me to work on a computational tool that simplifies margin calculations and provides insights into risk exposure. The project aims to bridge the gap between theoretical finance concepts and practical implementation through Python-based automation.
+Risk management in financial derivatives trading is a critical component of market stability. The margining process ensures that traders deposit sufficient collateral to mitigate counterparty risk. Given the dynamic nature of financial markets, accurately estimating margin requirements is essential to prevent excessive leverage and systemic risks.
+
+The aim of this project is to develop an automated computational tool that calculates margin requirements and assesses financial risk exposure using Python. The project integrates statistical financial models, machine learning techniques, and data visualization to enhance risk assessment capabilities. 
+
+With my experience as a working student at an energy company in the Exchange, Clearing, and Marketing Operations department, I have developed a strong interest in understanding and automating risk assessment procedures. The need for accurate, data-driven risk assessment has motivated this research, which seeks to bridge the gap between theoretical finance concepts and practical implementation. 
+
+The primary objectives of this project include:
+\begin{itemize}
+    \item Automating the calculation of initial and variation margins for futures contracts.
+    \item Implementing statistical risk measures such as Value at Risk (VaR) to quantify market exposure.
+    \item Developing a machine learning model to predict future margin requirements based on historical volatility and market trends.
+    \item Visualizing key risk metrics to facilitate better decision-making in financial risk management.
+\end{itemize}
 
 \section{Methodology}
-The methodology for this project includes:
-\begin{itemize}
-    \item \textbf{Data Collection}: Historical price data of natural gas futures is retrieved using the \texttt{yfinance} (Yahoo Finance) library.
-    \item \textbf{Initial Margin Calculation}: Based on historical volatility, initial margin is estimated.
-    \item \textbf{Variation Margin}: Daily profit/loss is tracked, and variation margin is updated accordingly.
-    \item \textbf{Risk Analysis}: The model incorporates Value at Risk (VaR) to measure potential losses.
-    \item \textbf{Machine Learning Model}: A Random Forest Regressor is trained to predict initial margin using key risk factors.
-    \item \textbf{Visualization}: Trends in price, margin requirements, and risk metrics are visualized using \texttt{matplotlib}.
-\end{itemize}
+The methodology consists of five key steps, each contributing to a comprehensive analysis of margin requirements and financial risk:
 
-\section{Implementation}
-The implementation follows these key steps:
 \begin{enumerate}
-    \item Fetch historical price data using \texttt{yfinance}.
-    \item Compute rolling volatility to estimate initial margin.
-    \item Track daily changes in price to update variation margin.
-    \item Train a \textbf{Random Forest Regressor} to predict initial margin.
-    \item Evaluate the model using \textbf{Mean Squared Error (MSE)} and \textbf{R-Squared Score (R²)}.
-    \item Generate visual representations for analysis.
+    \item \textbf{Data Collection}: Historical market data for natural gas futures is retrieved using the \texttt{yfinance} API to ensure real-time applicability.
+    \item \textbf{Data Processing}: Cleaning and feature engineering are performed to calculate key indicators such as daily returns and rolling volatility.
+    \item \textbf{Risk Metrics Computation}: Initial margin, variation margin, and Value at Risk (VaR) are calculated to quantify risk exposure.
+    \item \textbf{Machine Learning Modeling}: A Random Forest Regressor is trained to predict initial margin requirements based on volatility and VaR metrics.
+    \item \textbf{Visualization and Analysis}: The impact of risk factors on margin requirements is analyzed using graphical representations.
 \end{enumerate}
 
-\section{Results and Analysis}
-The model successfully computes initial and variation margin, along with basic risk metrics. Below are key observations:
+
+
+\section{Implementation: Scripts and Steps Involved}
+This project is structured across multiple Python scripts, each contributing to different phases of the analysis:
+
+\subsection{Fetching Data (\texttt{fetch\_data.py})}
+This script retrieves historical price data from Yahoo Finance.
 \begin{itemize}
-    \item Higher volatility leads to increased margin requirements.
-    \item Variation margin reflects daily profit/loss dynamics.
-    \item Value at Risk (VaR) provides a probabilistic estimate of potential losses.
+    \item Defines the futures contract ticker (e.g., "NG=F" for Natural Gas Futures).
+    \item Fetches historical prices between specified dates (from 2021-01-01 to 2024-01-01).
+    \item Saves the data as a CSV file for further processing.
 \end{itemize}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{image.png}
-    \caption{Value at Risk (VaR) Analysis: Comparing Historical VaR and Parametric VaR at a 95\% confidence level.}
-    \label{fig:var_analysis}
-\end{figure}
+
+\subsection{Data Cleaning and Preprocessing (\texttt{clean\_data.py})}
+This script processes raw market data to prepare it for risk analysis.
+\begin{itemize}
+    \item Loads the CSV file and renames columns for consistency.
+    \item Computes daily returns and rolling volatility.
+    \item Handles missing values by dropping incomplete rows.
+    \item Saves the processed data for further analysis.
+\end{itemize}
+
+\subsection{Computing Risk Metrics (\texttt{risk\_analysis.py})}
+This script calculates key financial risk metrics.
+\begin{itemize}
+    \item Computes \textbf{Initial Margin} based on market volatility.
+    \item Tracks \textbf{Variation Margin} to measure daily profit/loss dynamics.
+    \item Computes \textbf{Value at Risk (VaR)} using historical and parametric methods.
+    \item Saves the computed risk metrics to a CSV file.
+\end{itemize}
+
+\subsection{Training the Machine Learning Model (\texttt{train\_model.py})}
+This script trains a Random Forest model to predict Initial Margin.
+\begin{itemize}
+    \item Splits data into training and testing sets.
+    \item Standardizes features for better model performance.
+    \item Trains a Random Forest Regressor with key risk factors.
+    \item Evaluates the model using MSE and R-squared score.
+\end{itemize}
+
+\subsection{Visualizing Risk Metrics (\texttt{visualize\_results.py})}
+This script generates plots for Value at Risk (VaR) and other risk metrics.
+\begin{itemize}
+    \item Plots historical vs. parametric VaR over time.
+    \item Highlights periods of high risk exposure.
+    \item Saves the visualizations as high-quality PNG files.
+\end{itemize}
+
+
+
+
+
+\section{Results and Analysis}
 
 \subsection{Model Performance}
 To evaluate the predictive performance of our machine learning model, we computed the following metrics:
@@ -66,8 +113,30 @@ To evaluate the predictive performance of our machine learning model, we compute
 \end{itemize}
 These results suggest that the model has a high predictive capability, accurately estimating initial margin based on key risk factors.
 
+\FloatBarrier
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{value_at_risk_analysis.png}
+    \caption{Value at Risk (VaR) Analysis: Comparing Historical VaR and Parametric VaR at a 95\% confidence level.}
+    \label{fig:var_analysis}
+\end{figure}
+\FloatBarrier
+
+
+% Inside the "Results and Analysis" section:
+\vspace{1em}
 \subsection{Feature Importance Analysis}
 To understand which factors most influence margin requirements, we analyzed feature importance from the trained Random Forest model:
+\vspace{2.5em}
+\FloatBarrier % Ensures figures don't float to unexpected places
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{feature_importance.png}
+    \caption{Feature Importance in Initial Margin Prediction: Identifying key risk factors in margin estimation.}
+    \label{fig:feature_importance}
+\end{figure}
+
+
 \begin{table}[h]
     \centering
     \begin{tabular}{lc}
@@ -86,9 +155,14 @@ To understand which factors most influence margin requirements, we analyzed feat
     \label{tab:feature_importance}
 \end{table}
 
+\FloatBarrier % Ensures the following content is properly placed
+
 The results indicate that \textbf{Parametric VaR} is the most significant factor influencing initial margin, followed by \textbf{Volatility}. Historical VaR and short-term variations in margin have minor contributions.
 
-\section{Model Limitations}
+
+
+
+\section{Limitations}
 While this model offers a structured approach to margin calculation and risk analysis, it is not entirely accurate as it does not incorporate several broad market factors. Some key limitations include:
 \begin{itemize}
     \item It does not implement advanced exchange-level margin methodologies such as SPAN.
@@ -97,6 +171,9 @@ While this model offers a structured approach to margin calculation and risk ana
     \item Extreme market shocks and stress testing scenarios are beyond the scope of this model.
 \end{itemize}
 Despite these limitations, this project serves as a fundamental framework that can be further developed into a more comprehensive risk management tool.
+
+
+
 
 \section{Future Improvements}
 To enhance the model, the following improvements can be made:
@@ -107,8 +184,17 @@ To enhance the model, the following improvements can be made:
     \item Introduce advanced risk metrics like Expected Shortfall (Conditional VaR).
 \end{itemize}
 
+
+
 \section{Conclusion}
-This project provides a foundational tool for understanding margin requirements and risk exposure in financial derivatives trading. While it simplifies complex financial concepts, it serves as an educational resource with potential for future development. The model is an initial step towards building a more sophisticated and comprehensive risk management tool.
+This project successfully develops a computational tool for margin calculation and risk analysis in financial derivatives trading. By leveraging historical price data, statistical risk metrics, and machine learning techniques, the model provides a structured approach to estimating margin requirements. The findings highlight the critical role of volatility and Value at Risk (VaR) in determining initial margin, reinforcing their importance in risk management strategies used by financial institutions.
+\vspace{1em}
+The machine learning model, particularly the Random Forest Regressor, demonstrates strong predictive capability, achieving an R² score of 0.982 and a low Mean Squared Error (MSE), making it a reliable tool for estimating margin requirements. The feature importance analysis further validates the significance of Parametric VaR and market volatility in influencing margin levels. These insights contribute to better risk assessment practices, allowing traders, clearinghouses, and financial institutions to mitigate exposure to adverse market movements effectively.
+\vspace{1em}
+Despite the robustness of the model, there are certain limitations that need to be addressed. The current approach assumes a static risk factor and does not account for extreme market conditions such as financial crises, where volatility behaves unpredictably. Additionally, the model focuses on a single-asset margin calculation without considering portfolio diversification effects, which could significantly alter margin requirements in multi-asset trading environments.
+
+
+\vspace{3em}
 
 \section{References}
 \begin{itemize}
