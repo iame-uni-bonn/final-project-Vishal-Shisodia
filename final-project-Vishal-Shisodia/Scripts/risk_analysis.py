@@ -5,7 +5,6 @@ import numpy as np
 # And to assess market exposure and risk management.
 def compute_risk_metrics(input_file="./final-project-Vishal-Shisodia/Data/processed_data.csv", output_file="./final-project-Vishal-Shisodia/Data/risk_data.csv"):
     """
-    
 
      # Risk Metrics Computed:
 

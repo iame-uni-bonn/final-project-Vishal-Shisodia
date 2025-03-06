@@ -47,6 +47,7 @@ def plot_results(input_file="./final-project-Vishal-Shisodia/Data/risk_data.csv"
     plt.grid(alpha=0.5)  # Make gridlines lighter for better readability
     
 
+
     # Save as high-quality PNG
     plt.savefig("value_at_risk_analysis.png", dpi=300, bbox_inches='tight') 
    

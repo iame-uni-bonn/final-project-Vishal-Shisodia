@@ -121,6 +121,7 @@ def train_model(input_file="./final-project-Vishal-Shisodia/Data/risk_data.csv")
         print("  (Decent. The model captures some trend but could be improved.)")
     else:
         print("  (Poor fit. Consider adding more features or improving data quality.)")
+        
 
     # Feature Importance Analysis
     importances = model.feature_importances_

@@ -19,7 +19,8 @@ def preprocess_data(input_file="./final-project-Vishal-Shisodia/Data/natural_gas
     output_file (str): Name of the processed output CSV file.
 
     Returns:
-    None
+    None: as the function does not return any value explicitly. Instead, it performs actions such as cleaning  data and saving it to a CSV file.
+    
     """
     # Load data
     data = pd.read_csv(input_file, skiprows=2, parse_dates=['Date'], index_col='Date')
