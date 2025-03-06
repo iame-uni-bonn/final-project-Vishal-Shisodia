@@ -86,7 +86,15 @@ This script generates plots for VaR and other risk metrics.
 ```
 
 ## Libraries Used
+All the packages are already installed in the course environment "epp".
 
+  - python=3.11.0
+  - pandas=2.2.3
+  - numpy=2.0.2
+  - matplotlib=3.9.2
+  - scikit-learn=1.5.2
+  - pip2=4.2
+  - yfinance==0.2.54
 
 ### Data Processing & Computation
 - `pandas` – Data manipulation, handling CSV files, and computing rolling statistics.
