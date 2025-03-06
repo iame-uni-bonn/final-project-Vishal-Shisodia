@@ -1,41 +1,146 @@
 # Margin Calculation and Risk Analysis for Financial Derivatives
 
-This project aims to develop a Python tool to calculate margin requirements and assess risk exposure for financial derivatives traded on an exchange. The tool is designed to simplify margining processes and provide basic risk metrics such as Value at Risk (VaR).  
+This project aims to develop a Python tool to calculate margin requirements and assess risk exposure for financial derivatives traded on an exchange. The tool is designed to simplify margining processes and provide key risk metrics such as Value at Risk (VaR). 
+
+## Motivation  
+Margining plays a crucial role in financial markets by ensuring that traders maintain adequate collateral to cover potential losses. Given my experience as a working student at **XXX**, an energy company in the **Exchange, Clearing, and Marketing Operations** department, I have developed a deeper understanding of margin requirements and risk assessment. This exposure has inspired me to work on a computational tool that simplifies margin calculations and provides insights into risk exposure.
+
+The project aims to bridge the gap between theoretical finance concepts and practical implementation through **Python-based automation**.
+
+## Reproducibility Statement
+This project is designed to be **fully reproducible**, ensuring that anyone can replicate the results under the same conditions. It meets the reproducibility standard through:
+- Code Availability: All scripts are clearly documented and openly available.
+- Data Sources: The project fetches historical price data from `yfinance`, making it accessible for any user.The data is from 2021-01-01 to 2024-01-01.
+- Environment Specification: The `requirements.txt` file lists all necessary dependencies to ensure the same computational environment.
+- Execution Steps: The instructions for running the project are included in the README, with well-commented Python scripts for clarity.
+- Version Control: The project is managed using Git, maintaining track of code changes for reproducibility.
+
+## Features
+- Data Collection & Cleaning: Fetches market data, processes it, and prepares it for analysis.
+- Initial Margin Calculation: Computes initial margin based on historical price data and volatility.
+- Variation Margin Tracking: Tracks daily profit/loss and adjusts variation margin dynamically.
+- Risk Analysis: Includes key risk metrics like Value at Risk (VaR) to assess potential losses.
+- Machine Learning Model: Uses a Random Forest model to predict initial margin requirements.
+- Visualization: Plots historical price trends, margin requirements, and risk metrics for better insights.
 
 
-# Motivation  
+### Installation Steps
 
-Margining plays a crucial role in financial markets by ensuring that traders maintain adequate collateral to cover potential losses. Given my experience as a working student at **XXX**, an energy company in the **Exchange, Clearing, and Marketing Operations** department, I have developed a deeper understanding of margin requirements and risk assessment. This exposure has inspired me to work on a computational tool that simplifies margin calculations and provides insights into risk exposure.  
+# Clone the repository
+git clone <https://github.com/iame-uni-bonn/final-project-Vishal-Shisodia.git>
 
-The project aims to bridge the gap between theoretical finance concepts and practical implementation through **Python-based automation**.  
 
-# Features
+### Step 1: Fetch Market Data
+```sh
+python fetch_data.py
+```
+This script fetches historical market data from yahoo finance for the period 2021-01-01 to 2024-01-01 and saves it as a CSV file.
 
-- Initial Margin Calculation: It Computes initial margin based on historical price data and volatility.  
-- Variation Margin: It tracks daily profit/loss and adjusts variation margin dynamically.  
-- Risk Analysis: Includes risk metrics like Value at Risk (VaR) for evaluating potential losses.  
-- Visualization: It plots historical price trends, margin requirements, and risk metrics for better insights.  
+### Step 2: Clean and Process Data
+```sh
+python clean_data.py
+```
+1) Data Loading:
+This script processes the financial data from a CSV file (natural_gas_futures.csv). 
+The dataset is loaded using pandas.read_csv().
+The script skips the first two rows while reading the CSV file, which ensures only relevant financial data is included.
+2) Column Renaming:
+To standardize the dataset, column names were renamed for clarity: ["Close", "High", "Low", "Open", "Volume"]
+This ensures uniformity across different datasets and simplifies analysis.
+3) Handling Missing Values:
+Missing values are dropped using data.dropna(inplace=True).
+This prevents computational issues in later steps, ensuring clean and reliable data.
+4) Feature Engineering:
+Daily Returns Calculation Computes daily percentage change in closing price and helps in risk assessment and volatility analysis.
+Rolling Volatility Calculation, A 10-day rolling window standard deviation of returns is used it represents historical price fluctuations, which is crucial for margin calculations.
 
----
+### Step 3: Compute Risk Metrics
+```sh
+python risk_analysis.py
+```
+This script calculates Initial Margin, Variation Margin, and Value at Risk (VaR).
 
-# Libraries used :-
+### Step 4: Train Machine Learning Model
+```sh
+python train_model.py
+```
+This script trains a Random Forest model to predict Initial Margin based on historical risk metrics.
 
-The project utilizes the following Python libraries:  
+### Step 5: Visualize Risk Metrics
+```sh
+python visualize_results.py
+```
+This script generates plots for VaR and other risk metrics.
 
-# Data Processing & Computation 
-1. pandas – For data manipulation, handling CSV files, computing rolling statistics, and filtering data.  
-2. numpy– For mathematical operations, calculating volatility, profit/loss, and other numerical computations.  
+## Project Structure
+```
+/margin-requirements-project
+│── data/                      # Directory to store raw and processed data
+│── fetch_data.py              # Fetches financial data
+│── clean_data.py              # Cleans and preprocesses data
+│── risk_analysis.py           # Computes risk metrics
+│── train_model.py             # Trains machine learning model
+│── visualize_results.py       # Generates risk analysis plots
+│── README.md                  # Documentation for the project
+│── report.pdf                 # Final project report (both the pdf and LaTeX script)
 
-# Financial Data Retrieval  
-3. yfinance – For fetching historical financial data (e.g., natural gas futures price data from Yahoo Finance).  
+```
 
-# Statistical & Risk Analysis 
-4. scipy – For statistical analysis, probability distributions, and optimization functions.  
-5. statsmodels – For time series analysis and advanced statistical methods.  
-6. scikit-learn – If machine learning or regression models are implemented for risk predictions.  
-7. arch – For implementing **GARCH** models (if applicable for volatility modeling).  
+## Libraries Used
 
-# Visualization
-8. matplotlib – For basic data visualization, including price trends, margin requirements, and risk metrics.  
+
+### Data Processing & Computation
+- `pandas` – Data manipulation, handling CSV files, and computing rolling statistics.
+- `numpy` – Mathematical operations, including volatility and profit/loss calculations.
+
+### Financial Data Retrieval
+- `yfinance` – Fetches historical financial data (e.g., natural gas futures prices).
+
+### Statistical & Risk Analysis
+- `scikit-learn` – Machine learning for risk prediction.
+
+### Visualization 
+- `matplotlib` – Generates plots for price trends, margin requirements, and risk metrics.
+
+## Methodology
+1. Fetch Data – Retrieve historical market prices via `yfinance`.
+2. Data Cleaning – Process and prepare raw data for analysis.
+3. Initial Margin Calculation – Compute using historical price volatility.
+4. Variation Margin Calculation – Track daily profit/loss and adjust accordingly.
+5. Risk Metrics Computation – Calculate VaR using historical and parametric methods.
+6. Machine Learning Model – Train a Random Forest model to predict Initial Margin.
+7. Data Visualization – Graphically represent results using `matplotlib`.
+
+## Results & Insights
+1) Model Performance:
+
+Mean Squared Error (MSE): 0.000782 (Lower values indicate better predictions.)
+R-Squared Score (R²): 0.982 (The model explains 98.2% of variance in Initial Margin.)
+
+2) Feature Importance Analysis:
+
+Parametric VaR is the most influential factor in Initial Margin prediction (94.3% importance).
+Volatility also contributes significantly (4.5% importance).
+Historical VaR and short-term variations in margin play minor roles.
+
+3) Value at Risk (VaR) Trends:
+
+Historical VaR and Parametric VaR exhibit different behaviors, especially during volatile market periods.
+The difference between them highlights potential underestimations or overestimations of risk in traditional models.
+
+4) Margin Fluctuations:
+
+High volatility increases margin requirements, ensuring sufficient collateral coverage.
+Variation Margin effectively captures daily profit/loss dynamics.
+
+## Limitations & Future Work
+- Assumes historical volatility accurately predicts future margins.
+- Could integrate deep learning models for improved predictions.
+- Future versions may include more complex risk models such as Expected Shortfall (ES).
+
+## References
+Financial risk modeling textbooks & industry guidelines.
+Documentation for yfinance, scikit-learn, and matplotlib.
+
 
 
