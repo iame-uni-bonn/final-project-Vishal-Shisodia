@@ -138,8 +138,15 @@ Variation Margin effectively captures daily profit/loss dynamics.
 - Future versions may include more complex risk models such as Expected Shortfall (ES).
 
 ## References
-Financial risk modeling textbooks & industry guidelines.
-Documentation for yfinance, scikit-learn, and matplotlib.
+
+### Books & Industry Guidelines
+- Hull, J. (2017). *Options, Futures, and Other Derivatives*. Pearson.
+- Basel Committee on Banking Supervision. (2013). *Margin Requirements for Non-Centrally Cleared Derivatives*.
+
+### Libraries & Tools
+- [yfinance Documentation](https://pypi.org/project/yfinance/)
+- [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
+- [matplotlib Documentation](https://matplotlib.org/stable/contents.html)
 
 
 
