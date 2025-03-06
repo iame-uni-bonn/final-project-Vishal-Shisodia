@@ -11,8 +11,7 @@ The project aims to bridge the gap between theoretical finance concepts and prac
 This project is designed to be **fully reproducible**, ensuring that anyone can replicate the results under the same conditions. It meets the reproducibility standard through:
 - Code Availability: All scripts are clearly documented and openly available.
 - Data Sources: The project fetches historical price data from `yfinance`, making it accessible for any user.The data is from 2021-01-01 to 2024-01-01.
-- Environment Specification: The `requirements.txt` file lists all necessary dependencies to ensure the same computational environment.
-- Execution Steps: The instructions for running the project are included in the README, with well-commented Python scripts for clarity.
+- Execution Steps: The instructions for running the project are included in this file, with well-commented Python scripts for clarity.
 - Version Control: The project is managed using Git, maintaining track of code changes for reproducibility.
 
 ## Features
