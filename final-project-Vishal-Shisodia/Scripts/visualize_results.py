@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-def plot_results(input_file="risk_data.csv"):
+def plot_results(input_file="./final-project-Vishal-Shisodia/Data/risk_data.csv"):
     """
     Plots the Actual vs. Predicted Initial Margin and Value at Risk (VaR) metrics.
 

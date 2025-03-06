@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 # Here we Train and evaluate a Random Forest model to predict Initial Margin for futures trading.
 
-def train_model(input_file="risk_data.csv"):
+def train_model(input_file="./final-project-Vishal-Shisodia/Data/risk_data.csv"):
     """
     # The Purpose of This Model:
 

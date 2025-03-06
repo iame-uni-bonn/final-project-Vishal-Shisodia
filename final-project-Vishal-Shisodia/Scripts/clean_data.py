@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
  # Here we load the CSV data, process it and add the computed features and save the clean data.
 
-def preprocess_data(input_file="natural_gas_futures.csv", output_file="processed_data.csv"):
+def preprocess_data(input_file="./final-project-Vishal-Shisodia/Data/natural_gas_futures.csv", output_file="./final-project-Vishal-Shisodia/Data/processed_data.csv"):
+
+
     """
 
    #Following are the Steps:

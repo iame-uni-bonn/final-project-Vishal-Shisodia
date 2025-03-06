@@ -3,7 +3,7 @@ import numpy as np
 
 # Here we Compute financial risk metrics for Natural Gas Futures, including the Initial Margin, Variation Margin, and Value at Risk (VaR).
 # And to assess market exposure and risk management.
-def compute_risk_metrics(input_file="processed_data.csv", output_file="risk_data.csv"):
+def compute_risk_metrics(input_file="./final-project-Vishal-Shisodia/Data/processed_data.csv", output_file="./final-project-Vishal-Shisodia/Data/risk_data.csv"):
     """
     
 
@@ -35,7 +35,7 @@ def compute_risk_metrics(input_file="processed_data.csv", output_file="risk_data
            - At **95% confidence**, the **Z-score is 1.645**, it means we expect 95% of the losses *not* to exceed this threshold.
            - **Formula**:
              Parametric VaR (95%) = -1.645 * Volatility * Close Price
-    """
+    
 
     # Parameters:
     - input_file [str]: CSV file containing the cleaned/processed market data.
@@ -43,7 +43,7 @@ def compute_risk_metrics(input_file="processed_data.csv", output_file="risk_data
 
     Returns:
     - None (It saves the results in output_file).
-    
+    """
 
     # Load data
     data = pd.read_csv(input_file, parse_dates=['Date'], index_col='Date')
